@@ -164,26 +164,13 @@ def calibrate_for_one_date(j):
                                  ,header=True, index= None)     
     print 'DONE'
 if __name__ == '__main__':
- 
-    p = list(np.arange(1,32))
-    #date = p[7]
-    #sc = SingleCalibration(date)
-    #sc.calculate()
-    
-    bb = [SingleCalibration(date) for date in p]
+    input_location="../Count/Daily_count - 2016/"
+    output_location="../Count/Entire_Data/"
+    p = list(np.arange(1,32))  
+    par = [SingleCalibration(date) for date in p]
     pool= Pool(processes=8)
-    results = pool.map(calc, bb)
-                       
-    read_and_combine_all_csv_file("C:/Users/Admin/Desktop/proposal/Data_2016/Count/Daily_count - 2016/",
-                                 "C:/Users/Admin/Desktop/proposal/Data_2016/Count/Entire_Data/")                          
+    results = pool.map(calc, par)          
+    read_and_combine_all_csv_file(input_location, output_location)                          
 
 ''''
-#distance calculation
-#mapping = {key : {"longitude": key/len(top), "latitude":key%len(top)} for key in range(len(top)* len(left)-1)}
-
-#distance_df = pd.DataFrame(index = mapping.keys(),columns = mapping.keys())
-#distance_df = distance_df.reset_index()
-#columns = list(distance_df.columns)[1:]
-#for col in columns:
-    #distance_df[col] = distance_df["index"].apply(lambda point : get_distance(point, col, mapping))
-'''''
+"111"
