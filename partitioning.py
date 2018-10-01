@@ -8,7 +8,7 @@ import glob
 import os
 from multiprocessing import Pool
 
-def red_and_combine_all_csv_file(input_location, output_location):    
+def read_and_combine_all_csv_file(input_location, output_location):    
     all_data = []
     for file_name in glob.glob(input_location+'*.csv'):
         df = pd.read_csv(file_name)
@@ -170,11 +170,11 @@ if __name__ == '__main__':
     #sc = SingleCalibration(date)
     #sc.calculate()
     
-    bb = [SingleCalibration(date) for date in p]
+    par = [SingleCalibration(date) for date in p]
     pool= Pool(processes=8)
-    results = pool.map(calc, bb)
+    results = pool.map(calc, par)
                        
-    red_and_combine_all_csv_file("C:/Users/Admin/Desktop/proposal/Data_2016/Count/Daily_count - 2016/",
+    read_and_combine_all_csv_file("C:/Users/Admin/Desktop/proposal/Data_2016/Count/Daily_count - 2016/",
                                  "C:/Users/Admin/Desktop/proposal/Data_2016/Count/Entire_Data/")                          
 
 ''''
